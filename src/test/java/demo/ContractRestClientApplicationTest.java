@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import com.cdc.demo.Book;
-import com.cdc.demo.IdObject;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=ContractRestClientApplicationTest.class)
@@ -46,19 +45,6 @@ public class ContractRestClientApplicationTest {
 		BDDAssertions.then(bookResponseEntity.getBody().getName()).isEqualTo("Nutuk");
 		BDDAssertions.then(bookResponseEntity.getBody().getAuthor()).isEqualTo("Gazi M.Kemal Atatürk");
 		assertThat(bookResponseEntity.getBody().getPrice()).isEqualTo(20d);
-
-	}
-	
-	@Test
-	public void insert_book_from_service_contract() {
-
-		Book book = new Book(2L, "Fi", "Azra Kohen", 18.00d);
-		// when:
-		ResponseEntity<IdObject> idResponseEntity = restTemplate.postForEntity("http://localhost:8100/book-service/books", book, IdObject.class);
-
-		// then:
-		BDDAssertions.then(idResponseEntity.getStatusCodeValue()).isEqualTo(201);
-		BDDAssertions.then(idResponseEntity.getBody().getId()).isEqualTo(2L);
 
 	}
 }
