@@ -29,7 +29,7 @@ public class ContractRestClientApplicationTest {
 	}
 	@Rule
 	public StubRunnerRule stubRunnerRule = new StubRunnerRule()
-		.downloadStub("com.cdc", "cdc-demo-provider", "1.0.1")
+		.downloadStub("com.cdc", "cdc-demo-provider", "1.0.0")
 		.withPort(8100)
 		.stubsMode(StubRunnerProperties.StubsMode.LOCAL);
 
