@@ -30,7 +30,7 @@ public class ContractRestClientApplicationTest {
 	}
 	@Rule
 	public StubRunnerRule stubRunnerRule = new StubRunnerRule()
-		.downloadStub("com.cdc", "cdc-demo-provider", "1.0.0")
+		.downloadStub("com.cdc", "cdc-demo-provider", "1.0.1")
 		.withPort(8100)
 		.stubsMode(StubRunnerProperties.StubsMode.LOCAL);
 
@@ -52,13 +52,13 @@ public class ContractRestClientApplicationTest {
 	@Test
 	public void insert_book_from_service_contract() {
 
-		Book book = new Book(100L, "Fi", "Azra Kohen", 34.00d);
+		Book book = new Book(2L, "Fi", "Azra Kohen", 18.00d);
 		// when:
 		ResponseEntity<IdObject> idResponseEntity = restTemplate.postForEntity("http://localhost:8100/book-service/books", book, IdObject.class);
 
 		// then:
 		BDDAssertions.then(idResponseEntity.getStatusCodeValue()).isEqualTo(201);
-		BDDAssertions.then(idResponseEntity.getBody().getId()).isEqualTo(100L);
+		BDDAssertions.then(idResponseEntity.getBody().getId()).isEqualTo(2L);
 
 	}
 }
